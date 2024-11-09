@@ -66,7 +66,7 @@ export default function TextForm(props) {
                     <button className="btn btn-danger my-3 mx-3" onClick={handleClearClick} >Clear</button>
                 </div>
             </div>
-            <div className="container">
+            <div className={`container text-${props.mode === `light` ? `dark` : `light`}`}>
                 <h1>Your text summary</h1>
                 <p>{wordCounter(text)} words and {charCounter(text)} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes read</p>
