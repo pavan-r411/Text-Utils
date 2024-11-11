@@ -39,6 +39,17 @@ export default function TextForm(props) {
         return words.filter(word => word.trim() !== "").length;
     }
 
+    const timeCalculator = (text) => {
+        let words = text.split(" ");
+        let cnt = 0;
+        words.filter((word) =>{ 
+            if(word.trim() !== ""){
+                cnt++;
+            }
+        });
+        return cnt * 0.008;
+    }
+
     const charCounter = (text) => {
         let charCount = 0;
         for(let i = 0; i < text.length; i++){
@@ -57,7 +68,7 @@ export default function TextForm(props) {
                     <h1>{props.formhead}</h1>
                     <div className="form-group">
                         <label htmlFor="myBox"></label>
-                        <textarea className="form-control" id="myBox" rows="3" style={{backgroundColor: props.mode === 'dark' ? `grey` : `white` , color: props.mode === `dark` ? `white` : `grey`}} value={text} onChange={handleOnChange}></textarea>
+                        <textarea className="form-control" id="myBox" rows="3" style={{backgroundColor: props.mode === 'dark' ? `#8f92b7` : `white` , color: props.mode === `dark` ? `white` : `grey`}} value={text} onChange={handleOnChange}></textarea>
                     </div>
                     <button className="btn btn-primary my-3" onClick={handleUPClick}>Convert to Uppercase</button>
                     <button className="btn btn-primary my-3 mx-3" onClick={handleCClick} >Convert to Lowercase</button>
@@ -69,7 +80,7 @@ export default function TextForm(props) {
             <div className={`container text-${props.mode === `light` ? `dark` : `light`}`}>
                 <h1>Your text summary</h1>
                 <p>{wordCounter(text)} words and {charCounter(text)} characters</p>
-                <p>{0.008 * text.split(" ").length} Minutes read</p>
+                <p>{timeCalculator(text)} Minutes read</p>
                 <h2>Preview</h2>
                 <p>{text}</p>
             </div>
